@@ -20,14 +20,7 @@ module.exports = function (streamable) {
     console.log(req.body);
     console.log('\n\n');
 
-    var tweet = {
-      text: "awesomesauce",
-      user: {
-        screen_name: "bob"
-      }
-    };
-
-    res.status(200).send(tweet);
+    res.status(200).send();
   });
 
   return router;
