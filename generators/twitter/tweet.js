@@ -18,7 +18,6 @@ var tweets = require('../../actions.js').tweets
 
 module.exports = {
   getTweet: function () {
-    var index = Math.floor(tArray.length * Math.random());
-    return tArray[index];
+    return _.sample(tArray);
   }
 };

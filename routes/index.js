@@ -1,6 +1,14 @@
-var express = require('express');
-var router = express.Router();
-var tweet = require('../generators/twitter/tweet');
+'use strict';
+let express = require('express');
+let router = express.Router();
+let tweet = require('../generators/twitter/tweet');
+
+
+function writeTweet(res) {
+  let curTweet =  tweet.getTweet();
+  res.write(curTweet, 'json');
+}
+
 
 module.exports = function (streamable) {
   /*
@@ -9,10 +17,10 @@ module.exports = function (streamable) {
   router.get('/statuses/filter.json', streamable, function (req, res) {
     console.log('connection made');
     setInterval(function () {
-      res.write(tweet.getTweet(), 'json');
+      writeTweet(res);
     }, 1000);
 
-    res.write(tweet.getTweet(), 'json');
+    writeTweet(res);
   });
 
   router.post('/statuses/retweet/:id', function (req, res) {
